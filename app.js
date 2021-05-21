@@ -24,6 +24,8 @@ let readDataFromExcel = function(){
 //Date is always TODAY's Date
 let getAvailableSlots = function(pincode,todayDate){
 
+            console.log('Please wait while we are searching the hospitals...');
+
             return new Promise(async (resolve, reject) => {
                        
                 https.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode='+pincode+'&date='+todayDate, (resp) => {
@@ -137,6 +139,7 @@ let getAvailableSlots = function(pincode,todayDate){
         // Writing to our file
         reader.writeFile(file,'./Data.xlsx')
 
+        console.log('Search Completed..');
         if(isAnySlotAvailable){
                     alert('Vaccination Slots are Available. Please check the Hospital Details Section of the Master Sheet');
         }
